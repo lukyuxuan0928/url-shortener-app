@@ -66,6 +66,25 @@ A custom Guardfile.
 
 Please refer a sample config: https://bitbucket.org/railstutorial/sample_app_4th_ed/raw/289fcb83f1cd72b51c05fe9319277d590d51f0d2/Guardfile
 
+
+## boostrap && jquery
+
+Add gem in the Gemfile
+
+```
+  gem 'bootstrap-sass', '3.3.7'
+  gem 'jquery-rails'
+```
+
+```
+touch app/assets/stylesheets/custom.scss
+```
+
+```
+@import "bootstrap-sprockets";
+@import "bootstrap";
+```
+
 GEM
   gem 'rails-controller-testing'
   gem 'minitest'
@@ -74,3 +93,5 @@ GEM
   gem 'guard-minitest'
   gem 'pg', '0.18.4'
   gem 'validate_url'
+  gem 'bootstrap-sass', '3.3.7'
+  gem 'jquery-rails'

@@ -10,4 +10,14 @@ class UrlShortenersControllerTest < ActionDispatch::IntegrationTest
     post add_path
     assert_response :success
   end
+
+  test "should get index" do
+    get root_path
+    assert_response :success
+  end
+
+  test "should get short_url" do
+    get '/123'
+    assert_response :success
+  end
 end

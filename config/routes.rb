@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   post 'add', to: 'url_shorteners#add'
 
   get '/:short_url', to: 'url_shorteners#redirect'
+
+  root to: 'url_shorteners#index'
 end
