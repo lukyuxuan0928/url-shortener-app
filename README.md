@@ -65,7 +65,17 @@ You need to migrate the database once you have modified it.
 Please be careful by using this command, it will reset all the data on live.
 
 ```
-  $ heroku run rails db:migrate:reset
+  $ heroku restart
+  $ heroku pg:reset DATABASE
+  $ heroku run rails db:migrate
+```
+
+#### Restart application
+
+Restart you application
+
+```
+  $ heroku restart
 ```
 
 ## Database
