@@ -1,6 +1,5 @@
 class UrlShortenersController < ApplicationController
   protect_from_forgery except: :redirect
-  UNIQUE_URL_LENGTH = 6
 
   def index
 
@@ -12,15 +11,15 @@ class UrlShortenersController < ApplicationController
     valid_url = []
 
     # create a new url
-    url = UrlShortener.new(ori_url: params[:ori_url], short_url: generate_unique_short_url)
+    url = UrlShortener.new(ori_url: params[:ori_url], short_url: UrlShortenerGenerator.generate_unique_short_url)
 
-    if url.valid? # url valid?
+    if url.valid? # if url valid then save, else show error
       url.save
       valid_url = url
     else # get errors
       errors = url.errors
 
-      if url.errors.messages[:ori_url] == ['has already been taken']
+      if url.errors.messages[:ori_url] == ['has already been taken'] # if ori_url duplicate then return short_url
         valid_url = UrlShortener.find_by_ori_url(url.ori_url) # return a exist url
       end
     end
@@ -29,11 +28,10 @@ class UrlShortenersController < ApplicationController
   end
 
   def redirect
-    if params[:short_url].length == UNIQUE_URL_LENGTH
-      #url = UrlShortener.find_by_short_url(request.host_with_port + '/' + params[:short_url])
-      url = UrlShortener.find_by_short_url('localhost:3000/' + params[:short_url])
+    if params[:short_url].length == UrlShortenerGenerator::UNIQUE_URL_LENGTH # check short_url length
+      url = UrlShortener.find_by_short_url(params[:short_url]) # find from database
 
-      if !url.nil?
+      if !url.nil? # if exist then redirect to ori_url, else show error
         redirect_to url.ori_url
       else
         flash.now[:danger] = 'URL not found.'
@@ -45,15 +43,4 @@ class UrlShortenersController < ApplicationController
     end
   end
 
-  private
-    def generate_unique_short_url
-      # url = request.host_with_port + '/' + ([*('a'..'z'), *('0'..'9'), *('A'..'Z')]).sample(6).join
-      url = 'localhost:3000/' + ([*('a'..'z'), *('0'..'9'), *('A'..'Z')]).sample(UNIQUE_URL_LENGTH).join
-
-      unless !UrlShortener.find_by_short_url(url).nil?
-        return url
-      else
-        generate_unique_url # recursive method
-      end
-    end
 end

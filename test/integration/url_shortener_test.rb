@@ -37,6 +37,14 @@ class UrlShortenersTest < ActionDispatch::IntegrationTest
     assert_empty json_response['link']
   end
 
+  test "should return an error with duplicate short_url" do
+    # post add_path, params: { url_shortener: { ori_url: 'asdasd' }, ori_url: 'asdasd' }
+    # assert_response :success
+    # json_response = JSON.parse(response.body)
+    # assert_equal ["is not a valid URL"], json_response['errors']['ori_url']
+    # assert_empty json_response['link']
+  end
+
   test "should return an error with empty ori_url" do
     post add_path, params: { url_shortener: { ori_url: '' }, ori_url: '' }
     assert_response :success
