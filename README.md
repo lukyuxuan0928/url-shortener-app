@@ -14,7 +14,7 @@ Clone this project to local and run the command below to enjoy the application.
   $ rails s
 ```
 
-This arranges to skip the pg gem for PostgreSQL in development and use SQLite for development and testing.
+This arranges to skip the pg gem for PostgreSQL in development and use SQLite3 for development and testing.
 
 ```
   $ bundle install --without production
