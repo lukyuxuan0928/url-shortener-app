@@ -1,6 +1,6 @@
 class UrlShortenersController < ApplicationController
+  protect_from_forgery except: :redirect
   UNIQUE_URL_LENGTH = 6
-
 
   def index
 
@@ -36,10 +36,12 @@ class UrlShortenersController < ApplicationController
       if !url.nil?
         redirect_to url.ori_url
       else
-        render json: { errors: ['URL not found'] }, status: 200
+        flash.now[:danger] = 'URL not found.'
+        render 'redirect'
       end
     else
-      render json: { errors: ['URL invalid'] }, status: 200
+      flash.now[:danger] = 'URL invalid.'
+      render 'redirect'
     end
   end
 

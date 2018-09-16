@@ -1,7 +1,27 @@
 <div>
   <h1>URL Shortener Application</h1>
 </div>
-<form>
- <input id="ori_url_text" type="text" name="ori_url" value=""><br><br>
- <input id="submit_btn" type="button" value="Submit">
-</form>
+<div id="custom_form">
+  <form>
+   <input id="ori_url_text" type="text" name="ori_url" value="" placeholder="https://www.google.com">
+   <button id="submit_btn" type="button" class="btn btn-primary btn-lg">Submit</button>
+  </form>
+</div>
+
+<!-- Modal -->
+<div id="message_modal" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLongTitle">Information</h3>
+      </div>
+      <div class="modal-body">
+        <p id="message_body">
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

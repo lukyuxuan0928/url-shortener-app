@@ -47,16 +47,14 @@ class UrlShortenersTest < ActionDispatch::IntegrationTest
 
   test "should return an error with invalid short_url" do
     get '/fws'
-    assert_response :success
-    json_response = JSON.parse(response.body)
-    assert_equal ["URL invalid"], json_response['errors']
+    assert_template :redirect
+    assert_equal 'URL invalid.', flash[:danger]
   end
 
   test "should return an error with non existing short_url" do
     get '/fwsa1F'
-    assert_response :success
-    json_response = JSON.parse(response.body)
-    assert_equal ["URL not found"], json_response['errors']
+    assert_template :redirect
+    assert_equal 'URL not found.', flash[:danger]
   end
 
   test "should redirect to ori_url with existing short_url" do
