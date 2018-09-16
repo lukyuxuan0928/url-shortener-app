@@ -1,6 +1,7 @@
 require "application_system_test_case"
 
-class UrlShortenersTest < ApplicationSystemTestCase
+
+class UrlShortenersSystemTest < ApplicationSystemTestCase
   # test "visiting the index" do
   #   visit url_shorteners_url
   #
