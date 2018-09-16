@@ -7,9 +7,17 @@ A URL shortener application in Ruby that can generate a unique "short" address o
 Clone this project to local and run the command below to enjoy the application.
 
 ```
-  $ git clone xxx
-  $ cd xxx
+  $ git clone https://github.com/lukyuxuan0928/url-shortener-app.git
+  $ cd url-shortener-app
+  $ bundle install --without production
+  $ rails db:migrate
   $ rails s
+```
+
+This arranges to skip the pg gem for PostgreSQL in development and use SQLite for development and testing.
+
+```
+  $ bundle install --without production
 ```
 
 Open a browser and enter 'localhost:3000'. Enter a valid URL and submit it, then you will get a short URL for this long long URL. After that, enter the short URL that generate by system at address bar, it will redirect to the original URL, enjoy!
@@ -17,7 +25,48 @@ Open a browser and enter 'localhost:3000'. Enter a valid URL and submit it, then
 ## Heroku
 
 I have hosting this application at Heroku.
-Link:
+Link: https://url-shorteners-app.herokuapp.com/
+
+### Deploy to Heroku
+
+```
+  $ heroku create
+  $ git push heroku master
+```
+
+#### Rename
+
+Rename you url name
+```
+  $ heroku rename <new-name>
+```
+
+#### Update application
+
+Keep updating the latest and 0 bug source code to Heroku, include maintenance mode
+
+```
+  $ heroku maintenance:on
+  $ git push heroku
+  $ heroku run rails db:migrate
+  $ heroku maintenance:off
+```
+
+#### Migrate database
+
+You need to migrate the database once you have modified it.
+
+```
+  $ heroku run rails db:migrate
+```
+
+#### Reset database
+
+Please be careful by using this command, it will reset all the data on live.
+
+```
+  $ heroku run rails db:migrate:reset
+```
 
 ## Database
 
