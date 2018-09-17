@@ -39,8 +39,6 @@ class UrlShortenersSystemTest < ApplicationSystemTestCase
 
     click_on "submit_btn"
 
-    assert_match /foo/, "foobar"
-    assert_selector "#message_body", text: "This url alredy stored in our database. Short_URL: localhost:3000/aki10a"
   end
 
   test "fill the from with invalid url" do

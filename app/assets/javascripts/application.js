@@ -35,12 +35,12 @@ $( document ).ready(function() {
         message = "";
 
         if (data['errors'] == "") {
-          message = 'Generated. Ori_URL: ' + data['link']['ori_url'] + '. Short_URL: localhost:3000/' +
+          message = 'Generated. Ori_URL: ' + data['link']['ori_url'] + '. Short_URL: ' +
                       data['link']['short_url'] + '. You can visit this Ori_URL by using this Short_URL next time';
         }
         else {
           if(data['errors']['ori_url'][0] == 'has already been taken')
-            message = 'This url alredy stored in our database. Short_URL: localhost:3000/' + data['link']['short_url'];
+            message = 'This url alredy stored in our database. Short_URL: ' + data['link']['short_url'];
           else if (data['errors']['ori_url'][0] == 'is not a valid URL')
             message = 'Please enter a valid URL.';
           else if (data['errors']['ori_url'][0] == "can't be blank")

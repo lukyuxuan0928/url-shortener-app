@@ -16,11 +16,13 @@ class UrlShortenersController < ApplicationController
     if url.valid? # if url valid then save, else show error
       url.save
       valid_url = url
+      valid_url.short_url = request.host_with_port + '/' + valid_url.short_url
     else # get errors
       errors = url.errors
 
       if url.errors.messages[:ori_url] == ['has already been taken'] # if ori_url duplicate then return short_url
         valid_url = UrlShortener.find_by_ori_url(url.ori_url) # return a exist url
+        valid_url.short_url = request.host_with_port + '/' + valid_url.short_url
       end
     end
 
