@@ -6,7 +6,7 @@ class UrlShortenerGeneratorTest < ActiveSupport::TestCase
   # end
 
   def setup
-    @url = UrlShortener.new(ori_url: "https://www.google.com", short_url: "aj1Az0")
+    @url = UrlShortener.new(ori_url: "https://www.lazada.com", short_url: "aj1Az0")
   end
 
   test "should return a short_url" do
@@ -26,5 +26,12 @@ class UrlShortenerGeneratorTest < ActiveSupport::TestCase
       short_url = UrlShortenerGenerator.generate_unique_short_url
       assert_match /^[a-zA-Z0-9]{6}$/, short_url
     end
+  end
+
+  test "should generate another unique_short_url if exist" do
+    @url.save
+    short_url = UrlShortenerGenerator.generate_unique_short_url(unique_short_url: @url.short_url)
+    assert_not_equal @url.short_url, short_url
+    assert_match /^[a-zA-Z0-9]{6}$/, short_url
   end
 end
