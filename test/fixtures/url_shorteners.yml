@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 google:
   ori_url: "https://www.google.com"
-  short_url: "localhost:3000/aki10a"
+  short_url: "aki10a"
 
 youtube:
   ori_url: "https://www.youtube.com"
-  short_url: "localhost:3000/akAT0a"
+  short_url: "akAT0a"
