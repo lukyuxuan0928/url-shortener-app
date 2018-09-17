@@ -137,6 +137,9 @@ A custom Guardfile.
 
 Please refer a sample config: https://bitbucket.org/railstutorial/sample_app_4th_ed/raw/289fcb83f1cd72b51c05fe9319277d590d51f0d2/Guardfile
 
+## Validate URL
+
+I am using a gem 'validate_url' to do a validation of ori_url.
 
 ## Bootstrap && Jquery
 
