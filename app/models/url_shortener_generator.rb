@@ -6,7 +6,7 @@ class UrlShortenerGenerator
       unique_short_url = ([*('a'..'z'), *('0'..'9'), *('A'..'Z')]).sample(UNIQUE_URL_LENGTH).join
     end
 
-    unless !UrlShortener.find_by_short_url(unique_short_url).nil?
+    unless UrlShortener.find_by_short_url(unique_short_url).present? # expect false
       return unique_short_url
     else
       generate_unique_short_url # recursive method
