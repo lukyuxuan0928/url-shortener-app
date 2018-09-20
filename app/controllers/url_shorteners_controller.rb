@@ -33,7 +33,7 @@ class UrlShortenersController < ApplicationController
     if params[:short_url].length == UrlShortenerGenerator::UNIQUE_URL_LENGTH # check short_url length
       url = UrlShortener.find_by_short_url(params[:short_url]) # find from database
 
-      if !url.nil? # if exist then redirect to ori_url, else show error
+      if url.present? # if exist then redirect to ori_url, else show error
         redirect_to url.ori_url
       else
         flash.now[:danger] = 'URL not found.'

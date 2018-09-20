@@ -45,6 +45,8 @@ $( document ).ready(function() {
             message = 'Please enter a valid URL.';
           else if (data['errors']['ori_url'][0] == "can't be blank")
             message = 'Please enter a URL.';
+          else // always need have a else for default
+            message = 'Internal Error.';
         }
         $('#message_body').text(message);
         $('#message_modal').modal('show');
